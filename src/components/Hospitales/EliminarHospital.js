@@ -11,7 +11,8 @@ export default class EliminarHospital extends Component {
 
     cargarHospital = () => {
         var id = this.props.idHos;
-        var request = '/webresources/hospitales'+id;
+        console.log(id);
+        var request = '/webresources/hospitales/'+id;
         var url = Global.urlhospitales+request;
         axios.get(url).then(res =>{
             this.setState({
@@ -25,7 +26,9 @@ export default class EliminarHospital extends Component {
     eliminarHospital = (e) => {
         e.preventDefault();
     }
-
+    componentDidMount = () =>{
+        this.cargarHospital();
+    }
     render() {
         return (
             <div>
@@ -34,6 +37,7 @@ export default class EliminarHospital extends Component {
                 <h4 className='container'>¿Esta seguro de que quiere 
                 eliminar el hospital <span>{this.state.hospital.nombre}</span> con id <span className='fw-bold fs-3'>{this.props.idHos}</span></h4>
                 <button className='btn btn-danger m-5'>Eliminar hospital</button>
+                
                 </form>
             </div>
         )
